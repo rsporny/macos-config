@@ -9,7 +9,6 @@ GIT_CONFIG_FILE := $(GIT_CONFIG_DIR)/config
 GIT_REPOS_DIR := ~/work/repos
 GPG_AGENT_CONF_DIR := ~/.gnupg
 GPG_AGENT_CONF_FILE := $(GPG_AGENT_CONF_DIR)/gpg-agent.conf
-
 BACKUP_DIR := ~/config_backups/$(shell date +%Y-%m-%d_%H-%M-%S)
 
 
@@ -64,7 +63,16 @@ $(GPG_AGENT_CONF_FILE):
 	@echo "Creating GPG agent configuration in $(GPG_AGENT_CONF_FILE)..."
 	@echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > $@
 
-all: install terminal shell git gpg
+plist:
+	gpg -d preferences.tar.gz.gpg > preferences.tar.gz
+	tar -xzf preferences.tar.gz
+	defaults import .GlobalPreferences.plist ./preferences/global.plist
+	defaults import com.apple.finder.plist ./preferences/finder.plist
+	defaults import com.apple.dock.plist ./preferences/dock.plist
+	defaults import com.apple.AppleMultitouchTrackpad.plist ./preferences/trackpad.plist
+	defaults import com.apple.driver.AppleBluetoothMultitouch.trackpad.plist ./preferences/trackpad-bluetooth.plist
+
+all: install terminal shell git gpg plist
 
 backup:
 	@echo "Creating backup in $(BACKUP_DIR)..."
