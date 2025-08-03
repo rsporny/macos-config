@@ -1,5 +1,5 @@
 # Variables
-HOST_NAME ?= unset
+HOST_NAME ?= mac
 SHELL_FILE           := /etc/shells
 FISH_CONFIG_DIR      := ~/.config/fish
 FISH_CONFIG_FILE     := $(FISH_CONFIG_DIR)/config.fish
@@ -63,9 +63,6 @@ defaults:
 	@echo "✅ macOS settings applied."
 
 hostname:
-	ifeq ($(HOST_NAME),unset)
-		$(error ❌ HOST_NAME must be set)
-	endif
 	sudo scutil --set HostName $(HOST_NAME)
 	sudo scutil --set LocalHostName $(HOST_NAME)
 	sudo scutil --set ComputerName $(HOST_NAME)

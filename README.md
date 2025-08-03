@@ -10,5 +10,10 @@ Fastrack for dev configuration.
 
 ## Bootstrap new mac
 ```
-make all
+make all  # defaults to hostname=mac
 ```
+or
+```
+make all HOST_NAME=my-new-mac
+```
+
