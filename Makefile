@@ -1,9 +1,6 @@
 # Variables
 HOST_NAME ?= mac
 SHELL_FILE           := /etc/shells
-FISH_CONFIG_DIR      := ~/.config/fish
-FISH_CONFIG_FILE     := $(FISH_CONFIG_DIR)/config.fish
-GIT_REPOS_DIR        := ~/work/repos
 
 # List of dotfiles to backup/restore (relative to $HOME)
 DOTFILES = \
@@ -15,7 +12,7 @@ DOTFILES = \
 BACKUP_DIR = dotfiles
 
 # Targets
-all: restore install shell defaults hostname settings
+all: restore install settings preferences
 
 backup:
 	@echo "🔄 Backing up dotfiles to '$(BACKUP_DIR)'..."
@@ -42,36 +39,31 @@ restore:
 install:
 	brew install ghostty fish neovim git gnupg pinentry-mac
 
-shell:
-	@echo "🐟 Configuring Fish shell..."
-	@echo "➕ Ensuring Fish is in /etc/shells..."
+settings:
+	@echo "🐟 Ensuring Fish is in /etc/shells..."
 	if ! grep -q "$(shell which fish)" $(SHELL_FILE); then \
 		sudo tee -a $(SHELL_FILE) <<< "$(shell which fish)"; \
 	fi
 	@echo "⚙️ Setting Fish as default shell..."
 	chsh -s "$(shell which fish)"
-	mkdir -p $(FISH_CONFIG_DIR)
 
-defaults:
-	@echo "🧰 Applying macOS default settings..."
-	./defaults.sh
-
-	# Apply changes
-	killall Dock || true
-	killall Finder || true
-
-	@echo "✅ macOS settings applied."
-
-hostname:
+	@echo "⚙️ Setting host name to $(HOST_NAME)..."
 	sudo scutil --set HostName $(HOST_NAME)
 	sudo scutil --set LocalHostName $(HOST_NAME)
 	sudo scutil --set ComputerName $(HOST_NAME)
 
-settings:
 	@echo "🔇 Disabling boot sound..."
 	sudo nvram StartupMute=%01
 	@echo "🔒 Setting immediate password requirement after screen saver begins..."
 	sysadminctl -screenLock immediate -password -
+
+preferences:
+	@echo "🧰 Applying macOS default settings..."
+	./preferences.sh
+	# Apply changes
+	killall Dock || true
+	killall Finder || true
+	@echo "✅ macOS settings applied."
 
 clean: backup
 	@echo "🧹 Removing configuration files..."
@@ -81,5 +73,5 @@ clean: backup
 	done
 	@echo "✅ All configuration files removed."
 
-.PHONY: all backup restore install defaults hostname settings shell clean
+.PHONY: all backup restore install settings preferences clean
 
