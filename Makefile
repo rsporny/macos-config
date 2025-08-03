@@ -32,6 +32,7 @@ backup:
 		mkdir -p "$$(dirname $$dest)"; \
 		cp -v "$$src" "$$dest"; \
 	done
+	@echo "✅ Backup finished."
 
 restore:
 	$(call print_header,🚚 Restoring dotfiles to $(HOME)...)
@@ -45,6 +46,7 @@ restore:
 			echo "⚠️  Warning: $$src not found. Skipping."; \
 		fi \
 	done
+	@echo "✅ Dotfiles restored sucessfully."
 
 install:
 	$(call print_header,✨ Installing cool apps...)
@@ -74,7 +76,7 @@ settings:
 preferences:
 	$(call print_header,🧙‍♂️ Applying macOS preferences...)
 	./preferences.sh
-	# Apply changes
+	@echo "🔄 Restart Dock and Finder"
 	killall Dock || true
 	killall Finder || true
 	@echo "✅ macOS preferences applied."

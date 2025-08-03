@@ -10,9 +10,11 @@ defaults write com.apple.dock show-recents -int 0
 defaults write com.apple.finder ShowStatusBar -int 1
 
 # key repeat
+defaults write 'Apple Global Domain' InitialKeyRepeat -int 15
+defaults write 'Apple Global Domain' KeyRepeat -int 2
 defaults write com.apple.Accessibility KeyRepeatDelay -float 0.25
 defaults write com.apple.Accessibility KeyRepeatEnabled -int 1
-defaults write com.apple.Accessibility KeyRepeatInterval -float 0.03333333299999999
+defaults write com.apple.Accessibility KeyRepeatInterval -float 0.03333333
 
 # trackpad
 defaults write com.apple.AppleMultitouchTrackpad Clicking -int 1  # tap to click
