@@ -1,0 +1,10 @@
+[commit]
+    gpgSign = true
+
+[tag]
+    gpgSign = true
+
+[user]
+    email = "404@rspo.dev"
+    name = "Radosław Sporny"
+    signingKey = "15AC8EA84FC2A5AE768FFD753CEBBA453DE5BCFD"
