@@ -2,7 +2,7 @@
 HOST_NAME ?= mac
 SHELL_FILE := /etc/shells
 
-# List of dotfiles to backup/restore (relative to $HOME)
+# List of dotfiles to backup/restore
 DOTFILES = \
     .config/git/config \
     .config/ghostty/config \
@@ -51,6 +51,7 @@ restore:
 install:
 	$(call print_header,✨ Installing cool apps...)
 	brew install ghostty fish neovim git gnupg pinentry-mac
+	brew install delta lazygit tig fzf gh
 	@echo "✅ Apps installed sucessfully."
 
 settings:
