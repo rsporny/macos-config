@@ -16,7 +16,7 @@ BACKUP_DIR = dotfiles
 define print_header
 	@echo ""
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-	@echo "🔧 $(1)"
+	@echo "$(1)"
 	@echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 endef
 
@@ -52,7 +52,7 @@ install:
 	@echo "✅ Apps installed sucessfully."
 
 settings:
-	$(call print_header,🚀 Setting up shell, hostname, etc...)
+	$(call print_header,🚓 Setting up shell, hostname, etc...)
 	@echo "🐟 Ensuring Fish is in /etc/shells..."
 	if ! grep -q "$(shell which fish)" $(SHELL_FILE); then \
 		sudo tee -a $(SHELL_FILE) <<< "$(shell which fish)"; \
@@ -72,7 +72,7 @@ settings:
 	@echo "✅ macOS system settings applied."
 
 preferences:
-	$(call print_header,🧰 Applying macOS preferences...)
+	$(call print_header,🧙‍♂️ Applying macOS preferences...)
 	./preferences.sh
 	# Apply changes
 	killall Dock || true
