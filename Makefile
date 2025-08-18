@@ -7,7 +7,8 @@ DOTFILES = \
     .config/git/config \
     .config/ghostty/config \
     .config/fish/config.fish \
-    .gnupg/gpg-agent.conf
+    .gnupg/gpg-agent.conf \
+    .config/direnv/direnv.toml
 
 BACKUP_DIR = dotfiles
 
@@ -50,7 +51,7 @@ restore:
 
 install:
 	$(call print_header,✨ Installing cool apps...)
-	brew install ghostty fish neovim git gnupg pinentry-mac
+	brew install ghostty fish neovim git gnupg pinentry-mac direnv
 	brew install delta lazygit tig fzf gh
 	@echo "✅ Apps installed sucessfully."
 
