@@ -8,7 +8,8 @@ DOTFILES = \
     .config/ghostty/config \
     .config/fish/config.fish \
     .gnupg/gpg-agent.conf \
-    .config/direnv/direnv.toml
+    .config/direnv/direnv.toml \
+    .config/nvim
 
 BACKUP_DIR = dotfiles
 
@@ -30,8 +31,16 @@ backup:
 	@for file in $(DOTFILES); do \
 		src="$(HOME)/$$file"; \
 		dest="$(BACKUP_DIR)/$$file"; \
-		mkdir -p "$$(dirname $$dest)"; \
-		cp -v "$$src" "$$dest"; \
+		if [ -e "$$src" ]; then \
+			mkdir -p "$$(dirname $$dest)"; \
+			if [ -d "$$src" ]; then \
+				cp -av "$$src" "$$(dirname $$dest)"; \
+			else \
+				cp -v "$$src" "$$dest"; \
+			fi \
+		else \
+			echo "⚠️  Warning: $$src not found. Skipping."; \
+		fi \
 	done
 	@echo "✅ Backup finished."
 
@@ -40,18 +49,23 @@ restore:
 	@for file in $(DOTFILES); do \
 		src="$(BACKUP_DIR)/$$file"; \
 		dest="$(HOME)/$$file"; \
-		if [ -f "$$src" ]; then \
+		if [ -e "$$src" ]; then \
 			mkdir -p "$$(dirname $$dest)"; \
-			cp -v "$$src" "$$dest"; \
+			if [ -d "$$src" ]; then \
+				cp -av "$$src" "$$(dirname $$dest)"; \
+			else \
+				cp -v "$$src" "$$dest"; \
+			fi \
 		else \
 			echo "⚠️  Warning: $$src not found. Skipping."; \
 		fi \
 	done
-	@echo "✅ Dotfiles restored sucessfully."
+	@echo "✅ Dotfiles restored successfully."
 
 install:
 	$(call print_header,✨ Installing cool apps...)
-	brew install ghostty fish neovim git gnupg pinentry-mac direnv
+	brew install ghostty fish neovim git gnupg pinentry-mac
+	brew install direnv ripgrep fd
 	brew install delta lazygit tig fzf gh
 	@echo "✅ Apps installed sucessfully."
 
