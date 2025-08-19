@@ -100,8 +100,14 @@ preferences:
 clean: backup
 	$(call print_header,🧹 Removing configuration files...)
 	@for file in $(DOTFILES); do \
-		target="$$HOME/$$file"; \
-		[ -f "$$target" ] && rm -v "$$target" || true; \
+		target="$(HOME)/$$file"; \
+		if [ -e "$$target" ]; then \
+			if [ -d "$$target" ]; then \
+				rm -rv "$$target"; \
+			else \
+				rm -v "$$target"; \
+			fi \
+		fi \
 	done
 	@echo "✅ All configuration files removed."
 
