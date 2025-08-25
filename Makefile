@@ -64,9 +64,9 @@ restore:
 
 install:
 	$(call print_header,✨ Installing cool apps...)
-	brew install ghostty fish neovim git gnupg pinentry-mac
-	brew install direnv ripgrep fd
-	brew install delta lazygit tig fzf gh
+	brew install ghostty fish git gnupg pinentry-mac  # essentials
+	brew install neovim luarocks stylua  # editor
+	brew install lazygit lazydocker direnv ripgrep fd fzf wget httpie  # tools
 	@echo "✅ Apps installed sucessfully."
 
 settings:
