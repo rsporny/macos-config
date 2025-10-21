@@ -1,2 +1,5 @@
-font-size = 18
-theme = rose-pine
+font-size = 16
+theme = Rose Pine
+split-divider-color = d7827e
+unfocused-split-opacity = 0.7
+window-padding-x = 10

@@ -49,13 +49,29 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 --------------------------------------------------
 -- conform formatter
 --------------------------------------------------
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    require("conform").format({ bufnr = args.buf, verbose = true })
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = "*",
+--   callback = function(args)
+--     require("conform").format({ bufnr = args.buf, verbose = true })
+--   end,
+-- })
 vim.keymap.set("n", "<leader>f", function()
   -- `bufnr = vim.api.nvim_get_current_buf()` is the same value you passed in the autocmd
   require("conform").format({ bufnr = vim.api.nvim_get_current_buf() })
 end, { desc = "Format buffer with Prettier" })
+
+--------------------------------------------------
+-- lsp LLM inline completion
+--------------------------------------------------
+vim.lsp.enable("copilot")
+vim.lsp.inline_completion.enable(true)
+
+vim.keymap.set("i", "<C-CR>", function()
+  if not vim.lsp.inline_completion.get() then
+    return "<C-CR>"
+  end
+end, {
+  expr = true,
+  replace_keycodes = true,
+  desc = "Get the current inline completion",
+})

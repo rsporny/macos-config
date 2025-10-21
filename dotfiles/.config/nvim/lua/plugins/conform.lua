@@ -7,12 +7,13 @@ return {
         javascript = { "prettier" },
         typescript = { "prettier" },
         lua = { "stylua" },
+        rust = { "rustfmt" },
         -- add more filetypes as needed
       },
       formatters = {
         prettier = {
           command = "prettier",
-          prepend_args = { "--tab-width", "2", "--use-tabs", "false" },
+          prepend_args = { "--tab-width", "4", "--use-tabs", "false" },
         },
       },
       log_level = vim.log.levels.DEBUG,
