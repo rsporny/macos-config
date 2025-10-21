@@ -17,3 +17,7 @@ or
 make all HOST_NAME=my-new-mac
 ```
 
+## Copilot inline completion
+To enable Copilot inline code completion remember to sign in:
+:LspCopilotSignIn
+

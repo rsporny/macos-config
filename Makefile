@@ -65,8 +65,10 @@ restore:
 install:
 	$(call print_header,✨ Installing cool apps...)
 	brew install ghostty fish git gnupg pinentry-mac  # essentials
-	brew install neovim luarocks stylua  # editor
+	brew install luarocks stylua  # editor
+	brew install neovim --HEAD  # latest neovim to use LLM/copilot
 	brew install lazygit lazydocker direnv ripgrep fd fzf wget httpie  # tools
+	brew install npm  # dependency for copilot-language-server
 	@echo "✅ Apps installed sucessfully."
 
 settings:
