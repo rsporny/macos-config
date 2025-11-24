@@ -69,6 +69,8 @@ install:
 	brew install neovim --HEAD  # latest neovim to use LLM/copilot
 	brew install lazygit lazydocker direnv ripgrep fd fzf wget httpie  # tools
 	brew install npm  # dependency for copilot-language-server
+	brew install borgbackup  # backup tool
+	brew install --cask vorta  # borg backup GUI
 	@echo "✅ Apps installed sucessfully."
 
 settings:
