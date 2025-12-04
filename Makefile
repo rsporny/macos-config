@@ -71,6 +71,7 @@ install:
 	brew install npm  # dependency for copilot-language-server
 	brew install borgbackup  # backup tool
 	brew install --cask vorta  # borg backup GUI
+	brew install --cask font-montserrat
 	@echo "✅ Apps installed sucessfully."
 
 settings:
