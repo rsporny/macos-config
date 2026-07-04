@@ -21,18 +21,17 @@ return {
       "neovim/nvim-lspconfig",
     },
   },
-  {
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    config = function()
-      require("mason-tool-installer").setup({
-        ensure_installed = {
-          "stylua",
-          "copilot-language-server",
-        },
-        auto_update = false,
-        run_on_start = true,
-      })
-    end,
-    dependencies = { "mason-org/mason.nvim" },
-  },
+  -- {
+  --   "WhoIsSethDaniel/mason-tool-installer.nvim",
+  --   config = function()
+  --     require("mason-tool-installer").setup({
+  --       ensure_installed = {
+  --         "stylua",
+  --       },
+  --       auto_update = false,
+  --       run_on_start = true,
+  --     })
+  --   end,
+  --   dependencies = { "mason-org/mason.nvim" },
+  -- },
 }

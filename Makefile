@@ -65,10 +65,9 @@ restore:
 install:
 	$(call print_header,✨ Installing cool apps...)
 	brew install ghostty fish git gnupg pinentry-mac  # essentials
-	brew install luarocks stylua  # editor
-	brew install neovim --HEAD  # latest neovim to use LLM/copilot
+	brew install neovim luarocks  # editor
 	brew install lazygit lazydocker direnv ripgrep fd fzf wget httpie  # tools
-	brew install npm  # dependency for copilot-language-server
+	brew install --cask claude-code
 	brew install borgbackup  # backup tool
 	brew install --cask vorta  # borg backup GUI
 	brew install --cask font-montserrat

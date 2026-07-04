@@ -1,6 +1,7 @@
 if status is-interactive
     abbr --add -- ll "ls -lha"
     abbr --add -- vim nvim
+    abbr --add -- duu "du -h -d 1 | sort -hr"
     direnv hook fish | source
     fish_add_path /opt/homebrew/opt/llvm/bin  # fix secp256k1 rust compilation, clang
     ssh-add --apple-use-keychain ~/.ssh/id_ed25519
